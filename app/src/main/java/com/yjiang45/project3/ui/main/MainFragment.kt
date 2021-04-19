@@ -34,7 +34,7 @@ class MainFragment : Fragment(), addItem.AddItemListener {
         var itemPassed = Items()
     }
 
-    override fun onAddItem(items: Items) {
+    override fun onAddItem(items: Items) {//call insert item
         viewModel.insert(items)
     }
 
@@ -52,7 +52,6 @@ class MainFragment : Fragment(), addItem.AddItemListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
         adapter=ItemsAdapter()
         itemsRecycler = view.findViewById(R.id.items_view)
         itemsRecycler.layoutManager = LinearLayoutManager(context)
@@ -70,6 +69,7 @@ class MainFragment : Fragment(), addItem.AddItemListener {
                 viewHolder: RecyclerView.ViewHolder,
                 target: RecyclerView.ViewHolder
             ) = false
+            //allow user to swipe the list in order to delete the item
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val thisItem = adapter.getWordAtPosition(viewHolder.adapterPosition)
                 viewModel.deleteWord(items = thisItem)
@@ -90,7 +90,7 @@ class MainFragment : Fragment(), addItem.AddItemListener {
     }
 
 
-    fun itemDeletedAlert(items: Items) {
+    fun itemDeletedAlert(items: Items) {//pop up window that alerts user
         val msg = resources.getString(R.string.deleted_alert, items.name)
         val builder = AlertDialog.Builder(context)
         with(builder) {
@@ -130,6 +130,7 @@ class MainFragment : Fragment(), addItem.AddItemListener {
 
     private inner class ItemsAdapter : RecyclerView.Adapter<ItemsViewHolder>() {
 
+        //generates the list of items and update it up to time
         var items: List<Items> = emptyList()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemsViewHolder {

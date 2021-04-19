@@ -44,6 +44,7 @@ class Settings : Fragment() {
         //viewModel = ViewModelProvider(this).get(SettingsViewModel::class.java)
         super.onViewCreated(view, savedInstanceState)
 
+        //switch show unchecked item
         check_switch.isChecked = prefs.getBoolean(SHOW_UNCHECKED,false)
         check_switch.setOnCheckedChangeListener{ _, isChecked ->
             with(prefs.edit()){
@@ -52,6 +53,7 @@ class Settings : Fragment() {
             }
         }
 
+        //switch dark mode
         change_theme.isChecked = prefs.getBoolean(DARK_MODE,false)
         change_theme.setOnCheckedChangeListener{_, isChecked ->
             with(prefs.edit()) {
@@ -62,6 +64,7 @@ class Settings : Fragment() {
             }
         }
 
+        //switch allow delete all
         enable_deleteAll.isChecked = prefs.getBoolean(DELETE_ALL,false)
         enable_deleteAll.setOnCheckedChangeListener{_, isChecked ->
             with(prefs.edit()) {
@@ -71,7 +74,7 @@ class Settings : Fragment() {
         }
     }
 
-    fun changeTheme(){
+    fun changeTheme(){//darkmode
         if (prefs.getBoolean(DARK_MODE,false)){
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }

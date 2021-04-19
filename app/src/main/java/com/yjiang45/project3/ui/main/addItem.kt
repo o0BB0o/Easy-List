@@ -44,10 +44,10 @@ class addItem : BottomSheetDialogFragment(), AdapterView.OnItemSelectedListener 
     private val vm: MainViewModel by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
-    private var uuid = UUID.randomUUID()
+    private var uuid = UUID.randomUUID()//item id
     private lateinit var photoFile: File
     private lateinit var photoUri: Uri
-    private val picasso = Picasso.get()
+    private val picasso = Picasso.get()//call picasso to get photo
 
     interface AddItemListener {
         fun onAddItem(items: Items)
@@ -75,12 +75,13 @@ class addItem : BottomSheetDialogFragment(), AdapterView.OnItemSelectedListener 
             onDone()
             dismiss()
         }
+        //open up the camera and try to capture a photo and store it
         imageButton.apply {
             val pm = requireActivity().packageManager
             val captureImage = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             val resolveActivity =
                 pm.resolveActivity(captureImage, PackageManager.MATCH_DEFAULT_ONLY)
-            if (resolveActivity == null || !cameraPermission()) {
+            if (resolveActivity == null || !cameraPermission()) {//check permission of the phone
                 isEnabled = false
             }
             setOnClickListener {
@@ -100,7 +101,7 @@ class addItem : BottomSheetDialogFragment(), AdapterView.OnItemSelectedListener 
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        when (parent) {
+        when (parent) {//select each iem
             spinner -> selected = parent?.getItemAtPosition(position).toString()
         }
 
@@ -112,7 +113,7 @@ class addItem : BottomSheetDialogFragment(), AdapterView.OnItemSelectedListener 
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
-    private fun onDone() {
+    private fun onDone() {//finish creating the item
         val itemName = edit_item.text.toString()
         newItem.name = itemName
         newItem.category = selected
@@ -122,7 +123,7 @@ class addItem : BottomSheetDialogFragment(), AdapterView.OnItemSelectedListener 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when {
+        when {//request photot from the system
             resultCode != Activity.RESULT_OK -> return
             requestCode == REQUEST_PHOTO -> {
                 requireActivity().revokeUriPermission(

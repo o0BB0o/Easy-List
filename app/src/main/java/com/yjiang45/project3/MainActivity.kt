@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         navHostFragment.navController.addOnDestinationChangedListener { _, destination, _ ->
             supportActionBar?.let {
-                it.title = when (destination.id) {
+                it.title = when (destination.id) {//the buttons on the action bar
                     R.id.settings -> "Settings"
                     R.id.detail -> "Details"
                     R.id.info2 -> "Info"
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         Navigation.findNavController(this, R.id.navHostFragment).navigateUp()
 
 
-
+    //show the menu on top
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
         menuInflater.inflate(R.menu.menu, menu)
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
+        return when(item.itemId) {//individual items
             R.id.info_menuItem ->{
                 navHostFragment.navController.navigate(R.id.action_mainFragment_to_info2)
                 true
@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             show()
         }
     }
-    companion object{
+    companion object{//local variables
         const val SHOW_UNCHECKED = "show unchecked"
         const val DARK_MODE = "darkMode"
         const val DELETE_ALL = "delete all"
