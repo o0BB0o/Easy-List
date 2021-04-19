@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.yjiang45.project3.ui.main.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_detail"
+            app:destination="@id/detail" />
+        <action
+            android:id="@+id/action_mainFragment_to_settings"
+            app:destination="@id/settings" />
+        <action
+            android:id="@+id/action_mainFragment_to_info2"
+            app:destination="@id/info2" />
+    </fragment>
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.yjiang45.project3.ui.main.Settings"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" >
+        <action
+            android:id="@+id/action_settings_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_settings_to_detail"
+            app:destination="@id/detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/detail"
+        android:name="com.yjiang45.project3.ui.main.detail"
+        android:label="detail_fragment"
+        tools:layout="@layout/detail_fragment" >
+        <action
+            android:id="@+id/action_detail_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_detail_to_info2"
+            app:destination="@id/info2" />
+        <action
+            android:id="@+id/action_detail_to_settings"
+            app:destination="@id/settings" />
+    </fragment>
+    <fragment
+        android:id="@+id/info2"
+        android:name="com.yjiang45.project3.ui.main.info"
+        android:label="info_fragment"
+        tools:layout="@layout/info_fragment" >
+        <action
+            android:id="@+id/action_info2_to_detail"
+            app:destination="@id/detail" />
+        <action
+            android:id="@+id/action_info2_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>

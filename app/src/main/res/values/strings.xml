@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CheckList</string>
+    <string name="alert">Alert</string>
+    <string name="deleted_alert">Successfully deleted: %s</string>
+    <string name="copy_right">Copyright © 2020 0BB0 All rights reserved.</string>
+    <string name="ok">OK</string>
+
+    <string-array name="categories">
+        <item>N/A</item>
+        <item>FOOD</item>
+        <item>DRINK</item>
+        <item>ELECTRONIC</item>
+        <item>HEALTH</item>
+        <item>HOME</item>
+    </string-array>
+</resources>
